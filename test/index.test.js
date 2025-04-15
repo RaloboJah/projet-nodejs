@@ -6,6 +6,6 @@ describe("Test de l'API GET /api/hello", () => {
   it("doit retourner un message", async () => {
     const res = await request(app).get("/api/hello");
     expect(res.status).toBe(200);
-    expect(res.body.message).toBe("Hello depuis le backend 🎉");
+    expect(res.body.message).toBe("Hello depuis le ambalavao roba 🎉");
   });
 });
