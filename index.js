@@ -1,5 +1,8 @@
-function addition(a, b) {
-  return a + b;
-}
+const express = require("express");
+const app = express();
 
-module.exports = addition;
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello depuis le backend 🎉" });
+});
+
+module.exports = app;
