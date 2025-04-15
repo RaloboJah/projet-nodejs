@@ -1,6 +1,5 @@
 function addition(a, b) {
-    return a + b;
-  }
-  
-  module.exports = addition;
-  
+  return a * b;
+}
+
+module.exports = addition;
