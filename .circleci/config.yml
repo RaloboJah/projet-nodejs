@@ -9,8 +9,23 @@ jobs:
       - run: npm install
       - run: npm test
 
+  deploy:
+    docker:
+      - image: curlimages/curl:latest
+    steps:
+      - run:
+          name: Déclencher le déploiement Render
+          command: |
+            curl -X POST "https://api.render.com/v1/services/srv-cvvaihruibrs738p7j6g/deploys" \
+              -H "Authorization: Bearer $RENDER_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d '{}'
+
 workflows:
   version: 2
-  test-workflow:
+  test-and-deploy:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
