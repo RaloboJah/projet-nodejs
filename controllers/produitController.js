@@ -1,8 +1,14 @@
 const Produit = require("../models/produit");
 
 const createProduit = async (req, res) => {
+  const { nom, prix, quantite } = req.body;
+
+  if (!nom || prix === undefined || quantite === undefined) {
+    return res.status(400).json({ message: "Tous les champs sont requis" });
+  }
+
   try {
-    const produit = await Produit.create(req.body);
+    const produit = await Produit.create({ nom, prix, quantite });
     res.status(201).json(produit);
   } catch (error) {
     res.status(400).json({ error: error.message });

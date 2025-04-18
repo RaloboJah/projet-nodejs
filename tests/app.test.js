@@ -1,14 +1,14 @@
 const request = require("supertest");
-const app = require("../app"); // Assurez-vous que c’est le fichier qui exporte uniquement Express
+const app = require("../app"); // assure-toi que c’est le bon chemin
+
+let produitId;
 
 describe("Tests du CRUD de produits", () => {
-  let produitId;
-
   it("devrait créer un produit", async () => {
     const response = await request(app).post("/api/produits").send({
       nom: "Produit Test",
-      prix: 10.5,
-      quantite: 100,
+      prix: 99.99,
+      quantite: 10,
     });
 
     expect(response.status).toBe(201);
@@ -30,10 +30,9 @@ describe("Tests du CRUD de produits", () => {
   it("devrait mettre à jour un produit", async () => {
     const response = await request(app)
       .put(`/api/produits/${produitId}`)
-      .send({ quantite: 200 });
-
+      .send({ quantite: 20 });
     expect(response.status).toBe(200);
-    expect(response.body.quantite).toBe(200);
+    expect(response.body.quantite).toBe(20);
   });
 
   it("devrait supprimer un produit", async () => {
